@@ -32,7 +32,7 @@
 		}
 		function getWeather(lat, long){
 			
-			fetch("https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+long+"&appid=f754e4dccac53b7fac555775b8c9c418&units=imperial")
+			fetch("https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+long+"&appid=[YOURKEYHERE]&units=imperial")
 			.then(data => data.json())
 			.then(success => processData(success));
 		}
