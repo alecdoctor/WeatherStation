@@ -42,3 +42,11 @@ h5 {
 body {
 	background-color: lightblue;
 }
+
+#logo {
+	width: 125px;
+	height: 125px;
+	margin: 0px;
+	position: absolute;
+	top: -10px;
+}
