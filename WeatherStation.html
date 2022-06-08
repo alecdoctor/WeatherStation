@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="style.css">
+	<title>Whats the weather?</title>
+		<h2>Current Weather</h2>
+		<h5>Shows the weather in your current location</h5>
+	<script type="text/javascript">
+		function getLongLat ()
+		{
+			if(navigator.geolocation)
+			{
+				navigator.geolocation.getCurrentPosition(success,fail);
+			}
+			else
+			{
+				alert("Sorry, your browser does not support this web app.");
+			}
+		}
+		function success(position) 
+		{
+			var long = position.coords.longitude;
+			var lat = position.coords.latitude;
+			console.log(lat);
+			console.log(long);
+			getWeather(lat, long);
+		}
+		function fail()
+		{
+			alert("Failed.")
+		}
+		function getWeather(lat, long){
+			
+			fetch("https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+long+"&appid=f754e4dccac53b7fac555775b8c9c418&units=imperial")
+			.then(data => data.json())
+			.then(success => processData(success));
+		}
+		function processData(success)
+		{
+			console.log(success);
+			document.getElementById("locationoutput").innerHTML = success.name;
+			document.getElementById("tempoutput").innerHTML = success.main.temp + " F&deg";
+			document.getElementById("feeloutput").innerHTML = success.main.feels_like + " F&deg";
+			document.getElementById("RHoutput").innerHTML = success.main.humidity + "% RH";
+			document.getElementById("presoutput").innerHTML = success.main.pressure;
+			document.getElementById("cloudoutput").innerHTML = success.weather[0].main;
+			document.getElementById("windoutput").innerHTML = success.wind.speed + " MPH at";
+			document.getElementById("windoutputdeg").innerHTML = success.wind.deg + "&deg";
+			document.getElementById("currentDate").innerHTML = Date();
+		}
+	</script>
+</head>
+	<body onLoad="getLongLat();">
+		<div id="jsondata">
+			<table id="dataTable">
+				<tr>
+					<td>
+			<p class="itemTitle">Location: </p>
+					</td>
+					<td>
+				<p id="locationoutput"></p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+			<p class="itemTitle">Temperature: </p>
+					</td>
+					<td>
+				<p id="tempoutput"></p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+			<p class="itemTitle">Feels Like: </p>
+					</td>
+					<td>
+				<p id="feeloutput"></p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+			<p class="itemTitle">Humidity: </p>
+					</td>
+					<td>
+				<p id="RHoutput"></p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+			<p class="itemTitle">Pressure: </p>
+					</td>
+					<td>
+				<p id="presoutput"></p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+			<p class="itemTitle">Sky: </p>
+					</td>
+					<td>
+				<p id="cloudoutput"></p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+			<p class="itemTitle">Wind: </p>
+					</td>
+					<td>
+				<span id="windoutput"></span><span id="windoutputdeg"></span>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="currentDate"></div>
+	</body>
+</html>

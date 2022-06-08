@@ -1,0 +1,44 @@
+.itemTitle{
+	color: black;
+	font-family: sans-serif;
+}
+
+#tempoutput,#locationoutput,#feeloutput,#RHoutput,#presoutput,#cloudoutput,#windoutput,#windoutputdeg {
+	color: black;
+	font-family: sans-serif;
+	padding-left: 5px;
+}
+
+#currentDate {
+	color: black;
+	font-family: sans-serif;
+	font-size: small;
+	padding-top: 10px;
+	text-align: center;
+}
+
+#dataTable {
+	border-bottom: black solid 1px;
+	border-top: black solid 1px;
+	text-align: center;
+	margin: 0 auto;
+
+}
+
+h2 {
+	color: black;
+	font-family: sans-serif;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+h5 {
+	margin: 5px;
+	color: black;
+	font-family: sans-serif;
+	text-align: center;
+}
+
+body {
+	background-color: lightblue;
+}
